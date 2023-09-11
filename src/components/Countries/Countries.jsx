@@ -10,18 +10,15 @@ const Countries = () => {
             .then(res => res.json())
             .then(data => setCountries(data))
     }, [])
-
     const handleVisitedCountry = country => {
         console.log('add this to your visited country');
         const newVisitedCountries = [...visitedCountries, country]
         setVisitedCountries(newVisitedCountries);
     }
-
     const handleVisitedFlags = flag => {
         const newVisitedFlags = [...visitedFlags, flag];
         setVisitedFlags(newVisitedFlags);
     }
-
     return (
 
         <div>
@@ -36,17 +33,11 @@ const Countries = () => {
                     }
                 </ul>
             </div>
-
-
-
-            <div className="flag-container">
-                {
-                    visitedFlags.map(flag => <img src={flag}></img>)
+            <div className="flag-container">              {
+                    visitedFlags.map((flag, idx) => <img key={idx} src={flag}></img>)
                 }
-
             </div>
                     {/* display countries */}
-
             <div className="country-container">
                 {
                     countries.map(country => <Country
@@ -54,10 +45,8 @@ const Countries = () => {
                         handleVisitedCountry={handleVisitedCountry}
                         handleVisitedFlags={handleVisitedFlags}
                         country={country}>
-
                     </Country>)
                 }
-
             </div>
         </div>
     );
